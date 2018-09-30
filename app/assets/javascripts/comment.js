@@ -1,4 +1,15 @@
 $(function() {
+  function buildHTML(comment){
+    var html = `<p>
+                  <strong>
+                    <a href=/users/${comment.user_id}>${comment.user_name}</a>
+                    :
+                  </strong>
+                  ${comment.text}
+                </p>`
+    return html;
+  }
+
   $('#new_comment').on('submit', function(e) {
     // フォームが送信されたらイベントが発火するようにする
     e.preventDefault();
@@ -25,5 +36,27 @@ $(function() {
       // ajaxのリクエストがFormDataのときはどちらの値も適切な状態で送ることが可能なため、falseにすることで設定が上書きされることを防ぐ
       // FormDataを使ってフォームの情報を取得した時には必ずfalseにするという認識で良い
     })
+    .done(function(data) {
+      var html = buildHTML(data);
+      $('.comments').append(html);
+      $('.textbox').val('')
+    })
   })
-})
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
