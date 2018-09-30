@@ -1,0 +1,8 @@
+<div class="contents row">
+  <p><%= @nickname %>さんの投稿一覧</p>
+
+  <%= render partial: "tweets/tweet", locals: { tweets: @tweets } %>
+
+<%= paginate(@tweets) %>
+</div>
+
